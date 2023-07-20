@@ -1,9 +1,11 @@
 import { useRef, useState} from "react";
 import classes from "./LoginForm.module.css";
+import { useNavigate } from "react-router-dom";
 
  
 
 function LoginForm() {
+  const navigate=useNavigate();
   const passwordInputRef = useRef();
   const emailInputRef = useRef();
   const CnfmpasswordRef = useRef();
@@ -44,6 +46,7 @@ function LoginForm() {
         setIsLoading(false);
         if (response.ok) {
           console.log("login sussesssfulyy guysss")
+          
           return response.json();
         } else {
           //The response holds error
@@ -54,7 +57,9 @@ function LoginForm() {
         }
       })
       .then((data) => {
-        
+        console.log(data)
+        localStorage.setItem("token", data.idToken)
+        navigate('/home')
         
       })
       .catch((err) => {
@@ -97,6 +102,8 @@ function LoginForm() {
               })
               .then((data) => {
                  console.log(data)
+                 localStorage.setItem("token", data.idToken)
+                 navigate('/home')
                 
               })
               .catch((err) => {
