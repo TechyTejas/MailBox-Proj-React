@@ -31,7 +31,7 @@ function HeadPage() {
     console.log(DataByMe);
 
    // this post req is from me to receiver email 
-    fetch(`https://mailbox-ff62c-default-rtdb.firebaseio.com/${Mymail}.json`, {
+    fetch(`https://mailbox-ff62c-default-rtdb.firebaseio.com/send/${Mymail}.json`, {
       method: 'POST',
       body: JSON.stringify(DataByMe),
       headers: { 'Content-Type': 'application/json' },
@@ -47,7 +47,7 @@ function HeadPage() {
     }
    
      // this post req is from receiver to my email 
-    fetch(`https://mailbox-ff62c-default-rtdb.firebaseio.com/${MailByRec}.json`, {
+    fetch(`https://mailbox-ff62c-default-rtdb.firebaseio.com/receive/${MailByRec}.json`, {
       method: 'POST',
       body: JSON.stringify(DataByReceiver),
       headers: { 'Content-Type': 'application/json' },
