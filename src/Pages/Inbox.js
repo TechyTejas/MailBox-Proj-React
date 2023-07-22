@@ -1,5 +1,6 @@
 import { useState, useEffect  } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from "react-router-dom";
  
 
@@ -74,7 +75,25 @@ function Inbox() {
     }
   };
   
-
+  const DeleteMailHandler = (itemId) => {
+    fetch(
+        `https://mailbox-ff62c-default-rtdb.firebaseio.com/receive/${receiveEmail}/${itemId}.json`,
+        {
+          method: "DELETE",
+        }
+      ).then((response) => {
+        if (response.ok) {
+          console.log("Expense data deleted successfully!");
+          fetchItems(); // Fetch the updated data after deleting an item
+        }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  }
+     
+  
+   
   const  ReadMailHandler=()=>{
     navigate("/read")
   }
@@ -105,8 +124,9 @@ function Inbox() {
               )}
               BY: {item.email}----------{item.subject}----------{item.time}
               {
-                !item.visibility && <button style={{backgroundColor:"orange" , marginLeft:"20px"}} onClick={()=>ReadMailHandler(item.id)}>Read Again</button>
+                !item.visibility && <button style={{backgroundColor:"orange" , marginLeft:"20px"}} onClick={ ReadMailHandler(item.id)}>Read Again</button>
               }
+              <DeleteIcon onClick={() => DeleteMailHandler(item.id)}/>
             </li>
           </ul>
         ))}

@@ -1,4 +1,4 @@
-
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useEffect, useState } from 'react';
 
 function Outbox() {
@@ -38,10 +38,26 @@ function Outbox() {
           });
       }
 
+
+      const DeleteMailHandler = (itemId) => {
+        fetch(
+          `https://mailbox-ff62c-default-rtdb.firebaseio.com/send/${fetchemail}/${itemId}.json`,
+          {
+            method: "DELETE",
+          }
+        ).then((response) => {
+          if (response.ok) {
+            console.log("Expense data deleted successfully!");
+            fetchItems(); // Fetch the updated data after deleting an item
+          }
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+        });
+    }
+
      useEffect(() => {
-       fetchItems();
-     
-       
+       fetchItems(); 
      }, [])
      
   return (
@@ -50,7 +66,7 @@ function Outbox() {
         <div style={{width:"100%",border:"2px solid black",padding:"10px 10px"}}>
         {details.map((item, index) => (
             <ul key={index}>
-             <li>To  :   {item.email}----------{item.subject}----------{item.time}</li>
+             <li>To  :   {item.email}----------{item.subject}----------{item.time} -<DeleteIcon onClick={() => DeleteMailHandler(item.id)}/></li> 
             </ul>
             ))}
         </div>
