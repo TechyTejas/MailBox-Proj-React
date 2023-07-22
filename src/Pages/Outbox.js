@@ -13,14 +13,14 @@ function Outbox() {
         )
           .then((response) => {
             if (response.ok) {
-              console.log("data is getting nicely");
+             
               return response.json();
             } else {
               throw new Error("Failed to fetch expenses data");
             }
           })
           .then((data) => {
-            console.log(data + "we are getting data here guys");
+            
             const FetchDetails = [];
             for (const key in data) {
               FetchDetails.push({
@@ -31,7 +31,7 @@ function Outbox() {
               });
             }
             setDetails(FetchDetails);
-            console.log(FetchDetails[0].email + "here we are getting desc back");
+          
           })
           .catch((error) => {
             console.log("Error occurred while fetching expenses data:", error);

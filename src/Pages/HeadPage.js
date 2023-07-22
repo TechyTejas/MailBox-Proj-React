@@ -21,14 +21,16 @@ function HeadPage() {
     const currentTime = new Date().toLocaleString(); // Get the current time
     const emailContent = editorState.getCurrentContent().getPlainText();
     const Mymail = email.replace("@", "").replace(".", ""); // we will post our data to this user first
+    const visibility=true;
     const DataByMe={
       email:mailref.current.value,
       subject:subref.current.value,
       content:emailContent,
       time:currentTime,
+      visibility:visibility   // for that green button in inbox
     }
 
-    console.log(DataByMe);
+    //  console.log(DataByMe)
 
    // this post req is from me to receiver email 
     fetch(`https://mailbox-ff62c-default-rtdb.firebaseio.com/send/${Mymail}.json`, {
@@ -44,8 +46,9 @@ function HeadPage() {
       subject:subref.current.value,
       content:emailContent,
       time:currentTime,
-    }
-   
+      visibility:visibility    // for that green button in inbox
+    }   
+      // console.log(MailByRec)
      // this post req is from receiver to my email 
     fetch(`https://mailbox-ff62c-default-rtdb.firebaseio.com/receive/${MailByRec}.json`, {
       method: 'POST',
