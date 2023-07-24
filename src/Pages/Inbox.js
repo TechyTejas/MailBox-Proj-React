@@ -1,11 +1,14 @@
 import { useState, useEffect  } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { useNavigate } from "react-router-dom";
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
  
 
 function Inbox() {
- 
+ const dispatch=useDispatch();
 
   const navigate = useNavigate();
   const [details, setDetails] = useState([]);
@@ -14,6 +17,7 @@ function Inbox() {
   const receiveEmail = email.replace("@", "").replace(".", "");
 
   async function fetchItems() {
+   
     // Fetching entered data from Firebase Realtime Database
     await fetch(
       `https://mailbox-ff62c-default-rtdb.firebaseio.com/receive/${receiveEmail}.json`
@@ -46,6 +50,7 @@ function Inbox() {
         console.log("Error occurred while fetching expenses data:", error);
       });
   }
+
 
   const HideBtnHandler = async (itemId) => {
     try {
@@ -94,45 +99,66 @@ function Inbox() {
      
   
    
-  const  ReadMailHandler=()=>{
+  const ReadMailHandler=()=>{
     navigate("/read")
   }
-  useEffect(() => {
-    fetchItems();
-  
-  }, []);
 
+  
+  useEffect(() => {
+    const token=localStorage.getItem("token")
+    dispatch(authActions.isLogin(token))
+  fetchItems();
+  }, []);
+  
+  const boxShadowStyle = {
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)",
+  };
 
   return (
-    <div>
-      <h1>hii welcome in inbox {email}</h1>
-      <div
-        style={{
-          width: "100%",
-          border: "2px solid black",
-          padding: "10px 10px",
-        }}
-      >
-        {details.map((item, index) => (
-          <ul key={index}>
-            <li>
-              {item.visibility && (
-                <VisibilityIcon
-                  className="text-blue-500 mx-2"
-                  onClick={() => HideBtnHandler(item.id)}
-                />
-              )}
-              BY: {item.email}----------{item.subject}----------{item.time}
-              {
-                !item.visibility && <button style={{backgroundColor:"orange" , marginLeft:"20px"}} onClick={ ReadMailHandler(item.id)}>Read Again</button>
-              }
-              <DeleteIcon onClick={() => DeleteMailHandler(item.id)}/>
-            </li>
-          </ul>
-        ))}
+      <div>
+        <h1>hii welcome in inbox {email}</h1>
+        <div
+          style={{
+            width: "100%",
+            border: "2px solid black",
+            padding: "10px 10px",
+            ...boxShadowStyle, // Apply the box shadow style
+          }}
+        >
+          {details.map((item, index) => (
+             <ul key={index} style={{ listStyle: "none", margin: "0", padding: "0" }}>
+             <li style={{ marginBottom: "10px", display: "flex", alignItems: "center" }}>
+              <div style={{ flex: 1 }}>  {item.visibility && (
+                   <VisibilityIcon
+                    className="text-blue-500 mx-2"
+                    onClick={() => HideBtnHandler(item.id)}
+                  />
+                )}
+                </div>
+               
+                <div style={{ flex: 1 }}>
+              By : {item.email}
+              </div>
+              <div style={{ flex: 2 }}>
+                {item.subject}
+              </div>
+              <div style={{ flex: 1 }}>
+                {item.time}
+              </div>
+              <div style={{ flex: 1 }}>
+                {!item.visibility && (
+                  <OpenInNewIcon onClick={() => ReadMailHandler(item.id)}>
+                    Read Again
+                  </OpenInNewIcon>
+                )}
+                <DeleteOutlinedIcon onClick={() => DeleteMailHandler(item.id)} />
+                </div>
+              </li>
+            </ul>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default Inbox;

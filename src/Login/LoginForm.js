@@ -1,11 +1,15 @@
 import { useRef, useState} from "react";
 import classes from "./LoginForm.module.css";
 import { useNavigate } from "react-router-dom";
-
- 
+import { authActions } from "../store/auth";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginForm() {
+  const dispatch=useDispatch()
   const navigate=useNavigate();
+
   const passwordInputRef = useRef();
   const emailInputRef = useRef();
   const CnfmpasswordRef = useRef();
@@ -58,7 +62,7 @@ function LoginForm() {
       })
       .then((data) => {
         console.log(data)
-        localStorage.setItem("token", data.idToken)
+        dispatch(authActions.isLogin(data.idToken))
         navigate('/home')
         
       })
@@ -68,6 +72,8 @@ function LoginForm() {
 
     emailInputRef.current.value = "";
     passwordInputRef.current.value = "";
+    toast.success('Login Successfully',{position:"bottom-right",closeOnClick: true,
+        pauseOnHover: false,theme: "colored",autoClose: 1000,})
   }
      
   else {
@@ -101,8 +107,8 @@ function LoginForm() {
                 }
               })
               .then((data) => {
-                 console.log(data)
-                 localStorage.setItem("token", data.idToken)
+                 
+                //  dispatch(authActions.isLogin(data.idToken))
                  navigate('/home')
                 
               })
@@ -130,6 +136,7 @@ function LoginForm() {
   
 
   return (
+    <>
     <section className={classes.auth}>
       <h1>{isLogin ? "Login" : "Sign Up"}</h1>
       <form onSubmit={submitHandler}>
@@ -185,6 +192,7 @@ function LoginForm() {
         </div>
       </form>
     </section>
+    </>
   );
 }
 
