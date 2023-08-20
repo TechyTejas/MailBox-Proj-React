@@ -137,7 +137,9 @@ function LoginForm() {
 
   return (
     <>
-    <section className={classes.auth}>
+ 
+
+    <div className={classes.auth}>
       <h1>{isLogin ? "Login" : "Sign Up"}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
@@ -191,7 +193,7 @@ function LoginForm() {
           </button>
         </div>
       </form>
-    </section>
+    </div>
     </>
   );
 }

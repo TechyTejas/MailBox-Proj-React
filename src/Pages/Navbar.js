@@ -39,8 +39,7 @@ if(email){
           <li style={{ marginRight: "50px", marginLeft: "auto" }}>
             <Sidebar />
           </li>
-          <li style={{ marginRight: "20px" }}>About</li>
-          <li style={{ marginRight: "20px" }}>Contact</li>
+
           {isLoggedIn && (
             <>
               <li

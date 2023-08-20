@@ -1,36 +1,64 @@
 import React from 'react'
 import classes from './Footer.module.css'
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import TwitterIcon from '@mui/icons-material/Twitter';
+
 
 function Footer() {
- 
+
+  
   return (
-    <footer className={classes.footer}>
-    <div className={classes.footer2}> Our Generics </div>
-    <div className={classes.footericons}>
+    <div className={classes.divstyle}>
+    <footer >
+    {/* <div className={classes.footer2}> Footer Part </div> */}
+    <div className={classes.footer}>
+      <ol className={classes.li}>
+      <h2 style={{color:"black"}}>Shop</h2>
+        <li>Men's Clothing</li>
+        <li>Women's Clothing</li>
+        <li>Electronics</li>
+        <li>Mobiles & Watches</li>
+      </ol>
+      
+      <ol  className={classes.li}>
+        <h2 style={{color:"black"}}>About</h2>
+        <li>About</li>
+        <li>Contact Us</li>
+        <li>Privacy Policy</li>
+        <li>Terms and Conditions</li>
+      </ol>
+      
+      <div>
+     
       <ui className={classes.footerIconsUL}>
-        
+       
         <li className={classes.footerIconsLI}>
             <a href='https://www.facebook.com' className={classes.achor }>
-            <img src='https://png.pngtree.com/png-clipart/20180515/ourmid/pngtree-facebook-logo-facebook-icon-png-image_3566127.png' className={classes.imgg}/> 
+            <InstagramIcon style={{color:"purple"}}/>
             </a> 
         </li>
 
         <li className={classes.footerIconsLI}>
             <a href='https://www.youtube.com/' className={classes.achor }>
-            <img src='https://static.vecteezy.com/system/resources/thumbnails/018/930/572/small/youtube-logo-youtube-icon-transparent-free-png.png' className={classes.imgg}/>    
+            <YouTubeIcon style={{color:"red"}}/>
             </a>
          </li>
 
         <li className={classes.footerIconsLI}>
             <a href='https://www.spotify.com' className={classes.achor }>
-            <img src='https://e7.pngegg.com/pngimages/158/639/png-clipart-spotify-streaming-media-logo-playlist-spotify-app-icon-logo-music-download-thumbnail.png' className={classes.imgg}/>     
+            <TwitterIcon style={{color:"blue"}}/>
             </a> 
         </li>
 
       </ui>
+      </div>
     </div>
+   
 
   </footer>
+  Tejas Sadade 2023 All Rights are reserved..
+      </div>
   )
 }
 

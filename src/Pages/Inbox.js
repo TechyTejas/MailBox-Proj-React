@@ -109,14 +109,29 @@ function Inbox() {
     dispatch(authActions.isLogin(token))
   fetchItems();
   }, []);
-  
+ 
+  var count=0;
+ details.map((item,index)=>{
+    if(item.visibility){
+      count++
+    }
+  })
+
   const boxShadowStyle = {
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)",
   };
 
   return (
       <div>
-        <h1>hii welcome in inbox {email}</h1>
+      <button style={{ 
+      color: 'black', 
+      border: '2px solid black', 
+      height: '40px', 
+      fontWeight: 'bold', 
+      padding: '0 20px' 
+    }}>
+      Unread Mails {count}
+    </button>
         <div
           style={{
             width: "100%",

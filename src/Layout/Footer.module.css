@@ -1,43 +1,62 @@
 
 .footer{
-    display: flex;
-    /* margin-top: 40px; */
-    padding: 20px;
-    background: #56CCF2;
-  }
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background: rgb(119, 189, 236);
+}
+
+.footer2{
+  text-align: center;
+  color: white;
+  width: 50%;
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0 auto;
+}
   
-  .footer2{
-    text-align: center;
+.footerIconsUL{
+  list-style-type: none;
+  display: flex;
+}
+
+.footerIconsLI{
+  padding: 10px;
+  margin: 0px 20px;
+}
+
+.achor{
+  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.divstyle{
+  color: white;
+ text-align: center;
+background-color: #474545;
+}
+
+.li{
+  list-style-type: none;
+  text-align: left;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;  
+  color: white;
+  margin: 0px 30px ;
+  }
+
+.lili{
+    text-decoration: none; 
     color: white;
-    width: 50%;
-    font-size: 50px;
-    font-weight: bold;
-    margin: 0 auto;
-  }
-  
-  .footericons{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-  
-  .footerIconsUL{
-    list-style-type: none;
-    display: flex;
-  }
-  
-  .footerIconsLI{
-    padding: 10px;
-    margin: 0px 20px;
-  }
-  
-  .achor{
-    box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-  }
-  
-  .imgg{
-    width: 30px;
-  }
+}
+
+.lili:hover{
+  text-decoration: none; 
+  color: black;
+}
+
+.li li:hover{
+  color: black;
+}

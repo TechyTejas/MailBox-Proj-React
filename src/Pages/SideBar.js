@@ -23,7 +23,8 @@ function Sidebar() {
 
   return (
     <>
-         <img onClick={handleShow}style={{ marginLeft: "20px", width: "70px" }} src="https://banner2.cleanpng.com/20180720/ixe/kisspng-computer-icons-email-icon-design-equipo-comercial-5b525b3cdb7d21.311695661532123964899.jpg" alt='logo' />
+         <img onClick={handleShow}style={{ marginLeft: "20px", width: "70px",mixBlendMode:"multiply"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe8NSwj-YVOmC3SD0YQ8lfNrJDN2wPFVBFprBm1FYf48gSYs59Zl6o8CRPi624yvirZzU&usqp=CAU" alt='logo' />
+  
 
       <Offcanvas show={show} onHide={handleClose} style={{ width: "15rem" }}>
         <Offcanvas.Header closeButton>

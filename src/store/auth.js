@@ -18,7 +18,9 @@ const authslice=createSlice({
       localStorage.removeItem("token")
       localStorage.removeItem("email")
      }
-  }
+    
+  },
+ 
 })
 
 export const authActions=authslice.actions;

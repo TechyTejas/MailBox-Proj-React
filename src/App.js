@@ -9,6 +9,7 @@ import Inbox from './Pages/Inbox';
 import Outbox from './Pages/Outbox';
 import ReadMail from './Pages/ReadMail';
 import LoginForm from './Login/LoginForm';
+import Footer from './Layout/Footer';
 
 
 
@@ -28,7 +29,7 @@ function App() {
       <Route path="/Inbox" element={<Inbox/>}></Route>
       <Route path="/read" element={<ReadMail/>}></Route>
    </Routes>
-   
+   {/* <Footer/> */}
     </>
   );
 }

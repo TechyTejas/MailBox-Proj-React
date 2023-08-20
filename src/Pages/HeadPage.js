@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/auth';
 import SendIcon from '@mui/icons-material/Send';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
